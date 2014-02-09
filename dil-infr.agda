@@ -45,6 +45,7 @@ data inferCF (G : Graph) (Γ : Context) (p : polarity) : Node → form → Set w
 
 data infer (G : Graph) (Γ : Context) (p : polarity) : Node → form → Set where
   ifrBase : ∀{n : Node}{A : form} → inferCF G Γ p n A → infer G Γ p n A
-  ifrCut : ∀{n n' : Node}{A B : form} → infer G ((bar p , A , n) ∷ Γ) p n' B
-                                      → infer G ((bar p , A , n) ∷ Γ) (bar p) n' B
+  
+  ifrCut : ∀{n n' : Node}{A B : form} → infer G ((bar p , A , n) ∷ Γ) p+ n' B
+                                      → infer G ((bar p , A , n) ∷ Γ) p- n' B
                                       → infer G Γ p n A
